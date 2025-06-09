@@ -5,7 +5,7 @@ html {
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  /* A linha "height: 100%;" foi REMOVIDA daqui para liberar a rolagem */
   color: #fff;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
@@ -18,7 +18,7 @@ body {
 /* Layout Principal */
 .container {
   display: flex;
-  height: 100%;
+  height: 100vh; /* ALTERADO de 100% para 100vh para funcionar sem altura no body */
 }
 
 @keyframes slideInFromLeft {
@@ -121,7 +121,7 @@ body {
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   display: flex;
-  align-items: flex-start; /* ===== ALTERAÇÃO FEITA AQUI ===== */
+  align-items: flex-start;
   gap: 25px;
 }
 .box.visible {
@@ -155,14 +155,14 @@ body {
   text-align: justify;
 }
 
+
 /* Estilos Responsivos */
 @media (max-width: 850px) {
-  html, body {
-    height: auto;
-  }
+  /* O "height: auto" que estava aqui não é mais necessário, pois já removemos o "height: 100%" da regra base */
+  
   .container {
     flex-direction: column;
-    height: auto;
+    height: auto; /* Altura automática para o container crescer com o conteúdo */
   }
   .sidebar {
     flex-basis: auto;
@@ -173,13 +173,12 @@ body {
     max-width: 40%;
   }
   .content {
-    overflow-y: visible;
+    overflow-y: visible; /* A rolagem passa a ser da página inteira */
     padding: 15px;
   }
   .box {
     flex-direction: column;
     text-align: center;
-    /* No mobile, o alinhamento ao centro volta a ser bom */
     align-items: center; 
   }
   .player-photo {
