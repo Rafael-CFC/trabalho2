@@ -146,6 +146,14 @@ body {
   flex-grow: 1;
 }
 
+/* ===== NOVA REGRA ADICIONADA AQUI ===== */
+.player-info p {
+  font-size: 1.15rem; /* Aumenta o tamanho da fonte (1rem é o padrão) */
+  line-height: 1.6;   /* Aumenta o espaço entre as linhas */
+  text-align: justify;/* Justifica o texto para criar um bloco mais uniforme */
+}
+
+
 /* Estilos Responsivos */
 @media (max-width: 850px) {
   html, body {
@@ -175,6 +183,9 @@ body {
     margin: 15px auto;
     max-width: 250px;
   }
+  .player-info p {
+    text-align: left; /* No mobile, o texto justificado pode ficar ruim */
+  }
 }
 
 @media (max-width: 480px) {
@@ -191,4 +202,12 @@ body {
   .box h2 {
     font-size: 1.5rem;
   }
+  .player-info p {
+    font-size: 1rem; /* Volta ao tamanho padrão em telas muito pequenas */
+  }
+}
+.player-info p {
+  font-size: 1.15rem; /* Aumenta um pouco o tamanho da letra (padrão é 1rem) */
+  line-height: 1.6;   /* Aumenta o espaço entre as linhas, melhorando a leitura e preenchendo o espaço */
+  text-align: justify;/* Justifica o texto para formar um bloco mais coeso */
 }
