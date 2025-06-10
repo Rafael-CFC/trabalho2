@@ -3,19 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title data-key="page_title">O Mundo do Futebol</title>
+  <link rel="icon" type="image/png" href="./img/favicon.png">
+
+  <meta name="description" content="Explore a história do futebol e conheça a carreira de lendas como Lionel Messi, Cristiano Ronaldo, Neymar e a ascensão de Lamine Yamal.">
+  <meta property="og:title" content="O Mundo do Futebol">
+  <meta property="og:description" content="Um site para fãs de futebol com a história de grandes jogadores.">
+  <meta property="og:image" content="./img/og-image.jpg">
+  <meta property="og:url" content="https://seusite.com">
+  <meta property="og:type" content="website">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <div class="sidebar">
+    <aside class="sidebar">
       <div class="logo">
-        <img src="./img/fifa.png" alt="Fifa">
+        <img src="img/favicon.png" alt="">
       </div>
-      <div class="language-switcher">
-        <a href="#" data-lang="pt">🇧🇷</a>
-        <a href="#" data-lang="en">🇺🇸</a>
-        <a href="#" data-lang="es">🇪🇸</a>
+      <div class="controls">
+        <div class="language-switcher">
+          <a href="#" data-lang="pt">🇧🇷</a>
+          <a href="#" data-lang="en">🇺🇸</a>
+          <a href="#" data-lang="es">🇪🇸</a>
+        </div>
+        <button id="theme-switcher" title="Mudar tema">☀️</button>
       </div>
       <nav class="menu">
         <ul>
@@ -26,49 +39,52 @@
           <li><a href="#secao5" data-key="nav_yamal">Lamine Yamal 💯</a></li>
         </ul>
       </nav>
-    </div>
+    </aside>
 
-    <div class="content">
-      <div class="box" id="secao1">
+    <main class="content">
+      <section class="box" id="secao1">
         <div class="player-info">
             <h2 data-key="history_heading">História do Futebol⚽</h2>
             <p data-key="history_text">O futebol tem suas raízes em jogos de bola praticados em diversas culturas ao longo da história, mas o formato moderno começou a se consolidar na Inglaterra no século XIX, com a criação das primeiras regras. Em 1863, foi fundada a Football Association, que padronizou as regras do jogo. Desde então, o futebol se espalhou pelo mundo, tornando-se o esporte mais popular e unindo milhões de pessoas em torno de competições como a Copa do Mundo.</p>
         </div>
-      </div>
+      </section>
 
-      <div class="box" id="secao2">
-        <img src="./img/messi.jpg" alt="Lionel Messi" class="player-photo">
+      <section class="box" id="secao2">
+        <img src="./img/messi.jpg" alt="Lionel Messi beijando a taça da Copa do Mundo" class="player-photo" loading="lazy">
         <div class="player-info">
             <h2 data-key="messi_heading">Lionel Messi👽</h2>
-            <p data-key="messi_text">Lionel Messi, nascido em 24 de junho de 1987, é frequentemente chamado de o maior jogador de todos os tempos. Sua carreira lendária no FC Barcelona redefiniu recordes, onde conquistou dezenas de títulos e um recorde de oito prêmios Ballon d\'Or. Conhecido por seu centro de gravidade baixo, controle de bola sobrenatural e uma capacidade de finalização letal, Messi combina visão de jogo com uma aceleração estonteante. Após uma passagem pelo Paris Saint-Germain, ele agora encanta o público nos Estados Unidos jogando pelo Inter Miami. O ápice de sua carreira veio em 2022, quando liderou a Argentina na conquista da Copa do Mundo, cimentando seu status como uma lenda imortal do esporte.</p>
+            <p data-key="messi_text">Lionel Messi, nascido em 24 de junho de 1987, é frequentemente chamado de o maior jogador de todos os tempos. Sua carreira lendária no FC Barcelona redefiniu recordes, onde conquistou dezenas de títulos e um recorde de oito prêmios Ballon d'Or. Conhecido por seu centro de gravidade baixo, controle de bola sobrenatural e uma capacidade de finalização letal, Messi combina visão de jogo com uma aceleração estonteante. Após uma passagem pelo Paris Saint-Germain, ele agora encanta o público nos Estados Unidos jogando pelo Inter Miami. O ápice de sua carreira veio em 2022, quando liderou a Argentina na conquista da Copa do Mundo, cimentando seu status como uma lenda imortal do esporte.</p>
         </div>
-      </div>
+      </section>
 
-      <div class="box" id="secao3">
-       <img src="img/cr7.jpg" alt="">
+      <section class="box" id="secao3">
+        <img src="img/cr7.jpg" alt="Cristiano Ronaldo com a camisa do Al-Nassr" class="player-photo" loading="lazy">
         <div class="player-info">
             <h2 data-key="ronaldo_heading">Cristiano Ronaldo🤖</h2>
-            <p data-key="ronaldo_text">Cristiano Ronaldo, nascido em 5 de fevereiro de 1985, é a personificação da excelência atlética e da determinação. Um atacante completo, ele é famoso por sua velocidade explosiva, físico imponente, pulo fenomenal e uma finalização implacável com ambos os pés. Sua carreira é marcada por sucesso em grandes clubes como Manchester United, Real Madrid, e Juventus, onde acumulou cinco prêmios Ballon d\'Or e inúmeros troféus, incluindo cinco Ligas dos Campeões. Ícone da seleção portuguesa, liderou seu país na conquista da Eurocopa de 2016. Atualmente jogando pelo Al-Nassr na Arábia Saudita, Ronaldo continua a quebrar recordes de gols, provando que sua dedicação ao ofício é incomparável.</p>
+            <p data-key="ronaldo_text">Cristiano Ronaldo, nascido em 5 de fevereiro de 1985, é a personificação da excelência atlética e da determinação. Um atacante completo, ele é famoso por sua velocidade explosiva, físico imponente, pulo fenomenal e uma finalização implacável com ambos os pés. Sua carreira é marcada por sucesso em grandes clubes como Manchester United, Real Madrid, e Juventus, onde acumulou cinco prêmios Ballon d'Or e inúmeros troféus, incluindo cinco Ligas dos Campeões. Ícone da seleção portuguesa, liderou seu país na conquista da Eurocopa de 2016. Atualmente jogando pelo Al-Nassr na Arábia Saudita, Ronaldo continua a quebrar recordes de gols, provando que sua dedicação ao ofício é incomparável.</p>
         </div>
-      </div>
+      </section>
 
-      <div class="box" id="secao4">
-        <img src="./img/neymar.jpg" alt="Neymar Jr." class="player-photo">
+      <section class="box" id="secao4">
+        <img src="./img/neymar.jpg" alt="Neymar Jr. fazendo sua comemoração característica" class="player-photo" loading="lazy">
         <div class="player-info">
             <h2 data-key="neymar_heading">Neymar✋🏽😜🤚🏽</h2>
-        <p data-key="neymar_text">Nascido em 5 de fevereiro de 1992, é um dos talentos mais elétricos e criativos do futebol moderno. Famoso por seu "Joga Bonito", seu estilo é uma mistura de dribles desconcertantes, truques ousados e uma agilidade incrível. Ele explodiu no cenário mundial no Santos FC antes de formar um trio de ataque histórico no Barcelona ao lado de Messi e Suárez. Sua transferência recorde para o Paris Saint-Germain o tornou o jogador mais caro da história. Apesar de uma carreira marcada por momentos de genialidade e algumas lesões, Neymar é o maior artilheiro da história da seleção brasileira, um verdadeiro artista com a bola nos pés que atualmente joga pelo Al Hilal.</p>  
+            <p data-key="neymar_text">Nascido em 5 de fevereiro de 1992, é um dos talentos mais elétricos e criativos do futebol moderno. Famoso por seu "Joga Bonito", seu estilo é uma mistura de dribles desconcertantes, truques ousados e uma agilidade incrível. Ele explodiu no cenário mundial no Santos FC antes de formar um trio de ataque histórico no Barcelona ao lado de Messi e Suárez. Sua transferência recorde para o Paris Saint-Germain o tornou o jogador mais caro da história. Apesar de uma carreira marcada por momentos de genialidade e algumas lesões, Neymar é o maior artilheiro da história da seleção brasileira, um verdadeiro artista com a bola nos pés que atualmente joga pelo Al Hilal.</p>  
         </div>
-      </div>
+      </section>
 
-      <div class="box" id="secao5">
-       <img src="img/yamal.jpg" alt="">
+      <section class="box" id="secao5">
+        <img src="img/yamal.jpg" alt="Lamine Yamal em ação pelo FC Barcelona" class="player-photo" loading="lazy">
         <div class="player-info">
             <h2 data-key="yamal_heading">Lamine Yamal 💯</h2>
             <p data-key="yamal_text">Lamine Yamal, nascido em 2007, representa o futuro vibrante do futebol. Um produto da famosa academia La Masia do FC Barcelona, ele quebrou recordes como o jogador mais jovem a estrear e a marcar um gol pelo clube e pela seleção espanhola. Com uma maturidade e confiança que desmentem sua idade, Yamal exibe uma habilidade de drible de elite, velocidade e uma coragem para enfrentar defensores experientes. Sua ascensão meteórica na temporada 2023-2024 o estabeleceu não apenas como uma promessa, mas como uma realidade no time principal do Barcelona e uma peça chave para a Espanha, gerando imensa expectativa sobre o potencial de uma carreira lendária</p>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </div>
+
+  <a href="#" id="back-to-top" title="Voltar ao topo">↑</a>
+
   <script src="script.js"></script>
 </body>
 </html>
