@@ -1,47 +1,69 @@
-/* Reset, Fundo e Rolagem Suave */
+/* Reset, Variáveis de Cor e Rolagem Suave */
+:root {
+  --background-image: url(./img/campnou.jpeg);
+  --background-color: #1a1a1a; /* Cor de fundo escura caso a imagem falhe */
+  --sidebar-bg: rgba(50, 50, 50, 0.7);
+  --box-bg: rgba(0, 0, 0, 0.7);
+  --text-color: #fff;
+  --heading-color: #f1c40f;
+  --active-link-bg: #ffffff;
+  --active-link-text: #333;
+}
+
+body.light-theme {
+  --background-image: none;
+  --background-color: #f0f2f5;
+  --sidebar-bg: rgba(255, 255, 255, 0.8);
+  --box-bg: rgba(255, 255, 255, 0.9);
+  --text-color: #333;
+  --heading-color: #005ce6;
+  --active-link-bg: #000;
+  --active-link-text: #fff;
+}
+
 html {
   scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 html, body {
   margin: 0;
   padding: 0;
-  /* A linha "height: 100%;" foi REMOVIDA daqui para liberar a rolagem */
-  color: #fff;
+  height: 100%;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 body {
-  background: url(./img/campnou.jpeg) no-repeat center center fixed;
+  background-image: var(--background-image);
+  background-color: var(--background-color);
   background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  color: var(--text-color);
 }
 
 /* Layout Principal */
-.container {
-  display: flex;
-  height: 100vh; /* ALTERADO de 100% para 100vh para funcionar sem altura no body */
-}
+.container { display: flex; height: 100%; }
 
 @keyframes slideInFromLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
-/* Sidebar */
+/* Sidebar (Aside) */
 .sidebar {
-  background: rgba(128, 128, 128, 0.7);
+  background-color: var(--sidebar-bg);
   padding: 20px;
-  box-sizing: border-box;
   flex-basis: 250px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   animation: slideInFromLeft 0.8s ease-out forwards;
+  transition: background-color 0.4s;
+  backdrop-filter: blur(5px); /* Efeito de vidro adicionado */
 }
 .logo img {
   display: block;
@@ -49,32 +71,46 @@ body {
   margin-right: auto;
   max-width: 60%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
-.language-switcher {
-  text-align: center;
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   margin-bottom: 20px;
 }
 .language-switcher a {
   font-size: 24px;
-  margin: 0 8px;
   text-decoration: none;
   transition: transform 0.2s, filter 0.2s;
 }
 .language-switcher a.active {
   transform: scale(1.3);
-  filter: drop-shadow(0 0 4px white);
+  filter: drop-shadow(0 0 4px var(--text-color));
+}
+#theme-switcher {
+  background: none;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+#theme-switcher:hover {
+  background-color: var(--text-color);
+  color: var(--sidebar-bg);
 }
 
 /* Menu de Navegação */
-.menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.menu ul li {
-  margin-bottom: 10px;
-}
+.menu ul { list-style: none; padding: 0; margin: 0; }
+.menu ul li { margin-bottom: 10px; }
 .menu ul li a {
   display: block;
   text-decoration: none;
@@ -85,25 +121,20 @@ body {
   font-weight: bold;
   transition: all 0.3s;
 }
-.menu ul li:nth-child(1) a { background-color: #08b510; }
-.menu ul li:nth-child(2) a { background-color: #5b9a91; }
-.menu ul li:nth-child(3) a { background-color: #ed0f0f; }
-.menu ul li:nth-child(4) a { background-color: #f9bc05; }
-.menu ul li:nth-child(5) a { background-color: #0900ff; }
-
-.menu ul li a:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
-}
-
+.menu a[href="#secao1"] { background-color: #08b510; }
+.menu a[href="#secao2"] { background-color: #5b9a91; }
+.menu a[href="#secao3"] { background-color: #ed0f0f; }
+.menu a[href="#secao4"] { background-color: #f9bc05; }
+.menu a[href="#secao5"] { background-color: #0900ff; }
+.menu ul li a:hover { opacity: 0.8; transform: scale(1.05); }
 .menu ul li a.active-link {
-  background-color: #ffffff;
-  color: #333;
+  background-color: var(--active-link-bg);
+  color: var(--active-link-text);
   transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255,255,255,0.7);
+  box-shadow: 0 0 10px var(--active-link-bg);
 }
 
-/* Área de Conteúdo */
+/* Área de Conteúdo (Main) */
 .content {
   flex-grow: 1;
   padding: 20px;
@@ -111,31 +142,27 @@ body {
   flex-direction: column;
   gap: 20px;
   overflow-y: auto;
-  box-sizing: border-box;
 }
 .box {
-  background: rgba(0, 0, 0, 0.7);
+  background-color: var(--box-bg);
   padding: 20px;
   border-radius: 5px;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.4s;
   display: flex;
   align-items: flex-start;
   gap: 25px;
+  backdrop-filter: blur(5px); /* Efeito de vidro adicionado */
 }
-.box.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.box.visible { opacity: 1; transform: translateY(0); }
 .box h2 {
-  color: #f1c40f;
+  color: var(--heading-color);
   margin-top: 0;
   font-size: 2rem;
   margin-bottom: 15px;
+  transition: color 0.3s;
 }
-
 .player-photo {
   display: block;
   max-width: 220px;
@@ -146,23 +173,44 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   flex-shrink: 0;
 }
-.player-info {
-  flex-grow: 1;
-}
 .player-info p {
   font-size: 1.15rem;
   line-height: 1.6;
   text-align: justify;
 }
 
+/* Botão Voltar ao Topo */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--heading-color);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 24px;
+  line-height: 50px;
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+  z-index: 1000;
+}
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* Estilos Responsivos */
 @media (max-width: 850px) {
-  /* O "height: auto" que estava aqui não é mais necessário, pois já removemos o "height: 100%" da regra base */
-  
+  html, body {
+    height: auto;
+  }
   .container {
     flex-direction: column;
-    height: auto; /* Altura automática para o container crescer com o conteúdo */
+    height: auto;
   }
   .sidebar {
     flex-basis: auto;
@@ -173,7 +221,7 @@ body {
     max-width: 40%;
   }
   .content {
-    overflow-y: visible; /* A rolagem passa a ser da página inteira */
+    overflow-y: visible;
     padding: 15px;
   }
   .box {
