@@ -1,3 +1,5 @@
+// Objeto de traduções com TODAS as línguas, incluindo português.
+// Isso corrige o problema da tradução que parou de funcionar.
 const translations = {
     'pt': {
         'page_title': 'O Mundo do Futebol',
@@ -9,9 +11,9 @@ const translations = {
         'history_heading': 'História do Futebol⚽',
         'history_text': 'O futebol tem suas raízes em jogos de bola praticados em diversas culturas ao longo da história, mas o formato moderno começou a se consolidar na Inglaterra no século XIX, com a criação das primeiras regras. Em 1863, foi fundada a Football Association, que padronizou as regras do jogo. Desde então, o futebol se espalhou pelo mundo, tornando-se o esporte mais popular e unindo milhões de pessoas em torno de competições como a Copa do Mundo.',
         'messi_heading': 'Lionel Messi👽',
-        'messi_text': 'Lionel Messi, nascido em 24 de junho de 1987, é frequentemente chamado de o maior jogador de todos os tempos. Sua carreira lendária no FC Barcelona redefiniu recordes, onde conquistou dezenas de títulos e um recorde de oito prêmios Ballon d\'Or. Conhecido por seu centro de gravidade baixo, controle de bola sobrenatural e uma capacidade de finalização letal, Messi combina visão de jogo com uma aceleração estonteante. Após uma passagem pelo Paris Saint-Germain, ele agora encanta o público nos Estados Unidos jogando pelo Inter Miami. O ápice de sua carreira veio em 2022, quando liderou a Argentina na conquista da Copa do Mundo, cimentando seu status como uma lenda imortal do esporte.',
+        'messi_text': "Lionel Messi, nascido em 24 de junho de 1987, é frequentemente chamado de o maior jogador de todos os tempos. Sua carreira lendária no FC Barcelona redefiniu recordes, onde conquistou dezenas de títulos e um recorde de oito prêmios Ballon d'Or. Conhecido por seu centro de gravidade baixo, controle de bola sobrenatural e uma capacidade de finalização letal, Messi combina visão de jogo com uma aceleração estonteante. Após uma passagem pelo Paris Saint-Germain, ele agora encanta o público nos Estados Unidos jogando pelo Inter Miami. O ápice de sua carreira veio em 2022, quando liderou a Argentina na conquista da Copa do Mundo, cimentando seu status como uma lenda imortal do esporte.",
         'ronaldo_heading': 'Cristiano Ronaldo🤖',
-        'ronaldo_text': 'Cristiano Ronaldo, nascido em 5 de fevereiro de 1985, é a personificação da excelência atlética e da determinação. Um atacante completo, ele é famoso por sua velocidade explosiva, físico imponente, pulo fenomenal e uma finalização implacável com ambos os pés. Sua carreira é marcada por sucesso em grandes clubes como Manchester United, Real Madrid, e Juventus, onde acumulou cinco prêmios Ballon d\'Or e inúmeros troféus, incluindo cinco Ligas dos Campeões. Ícone da seleção portuguesa, liderou seu país na conquista da Eurocopa de 2016. Atualmente jogando pelo Al-Nassr na Arábia Saudita, Ronaldo continua a quebrar recordes de gols, provando que sua dedicação ao ofício é incomparável.',
+        'ronaldo_text': "Cristiano Ronaldo, nascido em 5 de fevereiro de 1985, é a personificação da excelência atlética e da determinação. Um atacante completo, ele é famoso por sua velocidade explosiva, físico imponente, pulo fenomenal e uma finalização implacável com ambos os pés. Sua carreira é marcada por sucesso em grandes clubes como Manchester United, Real Madrid, e Juventus, onde acumulou cinco prêmios Ballon d'Or e inúmeros troféus, incluindo cinco Ligas dos Campeões. Ícone da seleção portuguesa, liderou seu país na conquista da Eurocopa de 2016. Atualmente jogando pelo Al-Nassr na Arábia Saudita, Ronaldo continua a quebrar recordes de gols, provando que sua dedicação ao ofício é incomparável.",
         'neymar_heading': 'Neymar✋🏽😜🤚🏽',
         'neymar_text': 'Neymar Jr., nascido em 5 de fevereiro de 1992, é um dos talentos mais elétricos e criativos do futebol moderno. Famoso por seu "Joga Bonito", seu estilo é uma mistura de dribles desconcertantes, truques ousados e uma agilidade incrível. Ele explodiu no cenário mundial no Santos FC antes de formar um trio de ataque histórico no Barcelona ao lado de Messi e Suárez. Sua transferência recorde para o Paris Saint-Germain o tornou o jogador mais caro da história. Apesar de uma carreira marcada por momentos de genialidade e algumas lesões, Neymar é o maior artilheiro da história da seleção brasileira, um verdadeiro artista com a bola nos pés que atualmente joga pelo Al Hilal.',
         'yamal_heading': 'Lamine Yamal 💯',
@@ -55,6 +57,7 @@ const translations = {
     }
 };
 
+
 function setLanguage(lang) {
     localStorage.setItem('preferredLanguage', lang);
     document.querySelectorAll('[data-key]').forEach(element => {
@@ -69,14 +72,12 @@ function setLanguage(lang) {
 }
 
 function initAnimations() {
-    const sections = document.querySelectorAll('.box');
+    const sections = document.querySelectorAll('section.box');
     const navLinks = document.querySelectorAll('.menu a');
-
     if (!('IntersectionObserver' in window)) {
         sections.forEach(section => section.classList.add('visible'));
         return;
     }
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -84,16 +85,61 @@ function initAnimations() {
             }
             const id = entry.target.getAttribute('id');
             const correspondingLink = document.querySelector(`.menu a[href="#${id}"]`);
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-                navLinks.forEach(link => link.classList.remove('active-link'));
-                correspondingLink.classList.add('active-link');
+            if (correspondingLink) {
+                 if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active-link');
+                        link.removeAttribute('aria-current');
+                    });
+                    correspondingLink.classList.add('active-link');
+                    correspondingLink.setAttribute('aria-current', 'page');
+                }
             }
         });
-    }, { 
-        threshold: [0.1, 0.5]
+    }, { threshold: [0.1, 0.5] });
+    sections.forEach(section => observer.observe(section));
+}
+
+function initThemeSwitcher() {
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const body = document.body;
+
+    themeSwitcher.addEventListener('click', () => {
+        body.classList.toggle('light-theme');
+        const isLight = body.classList.contains('light-theme');
+        themeSwitcher.textContent = isLight ? '🌙' : '☀️';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 
-    sections.forEach(section => observer.observe(section));
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-theme');
+        themeSwitcher.textContent = '🌙';
+    } else {
+        body.classList.remove('light-theme');
+        themeSwitcher.textContent = '☀️';
+    }
+}
+
+function initBackToTopButton() {
+    const backToTopButton = document.getElementById('back-to-top');
+    const content = document.querySelector('.content');
+
+    content.addEventListener('scroll', () => {
+        if (content.scrollTop > 200) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    backToTopButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        content.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -111,4 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage(savedLanguage);
 
     initAnimations();
+    initThemeSwitcher();
+    initBackToTopButton();
 });
